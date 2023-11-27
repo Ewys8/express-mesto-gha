@@ -4,14 +4,14 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Поле должно быть заполнено'],
-    minlenght: [2, 'Минимальная длина поля - 2'],
-    maxlenght: [30, 'Максимальная длина подя - 30'],
+    minlength: [2, 'Минимальная длина поля - 2'],
+    maxlength: [30, 'Максимальная длина поля - 30'],
   },
   about: {
     type: String,
     required: [true, 'Поле должно быть заполнено'],
-    minlenght: [2, 'Минимальная длина поля - 2'],
-    maxlenght: [30, 'Максимальная длина подя - 30'],
+    minlength: [2, 'Минимальная длина поля - 2'],
+    maxlength: [30, 'Максимальная длина поля - 30'],
   },
   avatar: {
     type: String,
