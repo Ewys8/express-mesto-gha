@@ -6,9 +6,9 @@ const addUser = (req, res) => {
     .then((user) => res.status(201).send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        res.status(400).send({ message: err.message });
+        res.status(400).send({ message: 'Переданы некорректные данные при создании пользователя.' });
       } else {
-        res.status(500).send({ message: 'Произошла ошибка на сервере' });
+        res.status(500).send({ message: err.message });
       }
     });
 };
