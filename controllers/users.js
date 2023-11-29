@@ -16,7 +16,7 @@ const addUser = (req, res) => {
 
 const getUsers = (req, res) => {
   User.find({})
-    .then((users) => res.status(http2.constants.HTTP_STATUS_OK).send(users))
+    .then((users) => res.status(http2.constants.HTTP_STATUS_OK).send(users)).orFail(new Error('Пользователи не найдены'))
     .catch(() => res.status(http2.constants.HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'На сервере произошла ошибка' }));
 };
 
