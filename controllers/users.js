@@ -16,7 +16,7 @@ const addUser = (req, res) => {
 
 const getUsers = (req, res) => {
   User.find({})
-    .then((users) => res.status(http2.constants.HTTP_STATUS_OK).send(users)).orFail(new Error('Пользователи не найдены'))
+    .then((users) => res.status(http2.constants.HTTP_STATUS_OK).send(users))
     .catch(() => res.status(http2.constants.HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'На сервере произошла ошибка' }));
 };
 
@@ -47,8 +47,6 @@ const editUserData = (req, res) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         res.status(http2.constants.HTTP_STATUS_BAD_REQUEST).send({ message: err.message });
-      } else if (err.name === 'CastError') {
-        res.status(http2.constants.HTTP_STATUS_NOT_FOUND).send({ message: `Пользователь по id: ${userId} не найден.` });
       } else {
         res.status(http2.constants.HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'На сервере произошла ошибка' });
       }
@@ -64,8 +62,6 @@ const updateUserAvatar = (req, res) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         res.status(http2.constants.HTTP_STATUS_BAD_REQUEST).send({ message: err.message });
-      } else if (err.name === 'CastError') {
-        res.status(http2.constants.HTTP_STATUS_NOT_FOUND).send({ message: `Пользователь по id: ${userId} не найден.` });
       } else {
         res.status(http2.constants.HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'На сервере произошла ошибка' });
       }

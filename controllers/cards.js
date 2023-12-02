@@ -8,7 +8,7 @@ const createCard = (req, res) => {
       Card.findById(card._id)
         .populate('owner')
         .then((data) => res.status(http2.constants.HTTP_STATUS_CREATED).send(data))
-        .catch(() => res.status(http2.constants.HTTP_STATUS_NOT_FOUND).send({ message: 'Карточка не найдена' }));
+        .catch(() => res.status(http2.constants.HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Карточка не найдена' }));
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -22,7 +22,7 @@ const createCard = (req, res) => {
 const getCards = (req, res) => {
   Card.find({})
     .populate(['owner', 'likes'])
-    .then((cards) => res.send(cards)).orFail(new Error('Карточки не найдены'))
+    .then((cards) => res.send(cards))
     .catch(() => res.status(http2.constants.HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'На сервере произошла ошибка' }));
 };
 
